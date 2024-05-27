@@ -1,0 +1,21 @@
+// Base de dados para o Mongo DB
+// Projeto Delivery - criado 26/05/2024
+// Henrique Ferraz
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  email         String   @unique
+  name          String
+  password      String
+  createdAt_cli DateTime @default(now())
+  updatedAt_cli DateTime @updatedAt
+}
